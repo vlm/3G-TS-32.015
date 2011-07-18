@@ -399,38 +399,6 @@ EParameter	::= INTEGER (0..1023)
 
 EquipmentId				::= INTEGER
 
-EquipmentType			::= INTEGER
-{
-	conferenceBridge	(0)
-}
-
--- FileType				::= INTEGER
---{
---	callRecords			(1),
---	traceRecords		(9), 
---	observedIMEITicket	(14)
---}
-
-Fnur					::= ENUMERATED
-{
-	--
-	-- See Bearer Capability TS 24.008
-	--
-	fnurNotApplicable		(0),
-	fnur9600-BitsPerSecond		(1),
-	fnur14400BitsPerSecond		(2),
-	fnur19200BitsPerSecond		(3),
-	fnur28800BitsPerSecond		(4),
-	fnur38400BitsPerSecond		(5),
-	fnur48000BitsPerSecond		(6),
-	fnur56000BitsPerSecond		(7),
-	fnur64000BitsPerSecond		(8),
-	fnur33600BitsPerSecond		(9),
-	fnur32000BitsPerSecond		(10),
-	fnur31200BitsPerSecond		(11)
-}
-ForwardToNumber::= AddressString 
-
 FreeFormatData			::= OCTET STRING (SIZE(1..160))
 	--
 	-- Free formated data as sent in the FCI message
@@ -575,20 +543,6 @@ RoamingNumber			::= ISDN-AddressString
 	-- See TS 23.003
 	--
 
-RoutingNumber			::= CHOICE
-{
-	roaming				[1] RoamingNumber,
-	forwarded			[2] ForwardToNumber	
-}
-
---Service						::= CHOICE
---{
---	teleservice				[1] TeleserviceCode,
---	bearerService			[2] BearerServiceCode,
---	supplementaryService	[3] SS-Code,
---	networkSpecificService	[4] NetworkSpecificCode
---}
-
 ServiceDistanceDependencies	::= SET OF ServiceDistanceDependency
 
 ServiceDistanceDependency	::= SEQUENCE
@@ -630,12 +584,6 @@ SSActionType				::= ENUMERATED
 	interrogation			(4),
 	invocation				(5),
 	passwordRegistration	(6)
-}
-
-SSParameters				::= CHOICE
-{
-	forwardedToNumber		[0] ForwardToNumber,
-	unstructuredData		[1] OCTET STRING
 }
 
 SupplServices				::= SET OF SS-Code
@@ -715,64 +663,6 @@ TrunkGroup				::=	 CHOICE
 	tkgpNumber			[0] INTEGER,
 	tkgpName			[1] GraphicString
 }
-
---TSChangeover			::=	SEQUENCE
---{
---	newActiveTS			[0] INTEGER,
---	newStandbyTS		[1] INTEGER,
---	changeoverTime		[2] GeneralizedTime OPTIONAL,
---	authkey				[3] OCTET STRING OPTIONAL,
---	checksum			[4] OCTET STRING OPTIONAL,
---	versionNumber		[5] OCTET STRING OPTIONAL
---	 Note that if the changeover time is not
---	 specified then the change is immediate.
---}
-
---TSCheckError			::=	SEQUENCE
---{
---	errorId				[0] TSCheckErrorId,
---	fail				[1] ANY DEFINED BY errorId OPTIONAL
---}
-
---TSCheckErrorId			::=	CHOICE
---{
---	globalForm			[0] OBJECT IDENTIFIER,
---	localForm			[1] INTEGER
---}
-
---TSCheckResult			::=	CHOICE
---{
---	success				[0] NULL,
---	fail				[1] SET OF TSCheckError
---}
-
---TSCopyTariffSystem		::=	SEQUENCE
---{
---	oldTS				[0] INTEGER,
---	newTS				[1] INTEGER
---}
-
---TSNextChange			::=	CHOICE
---{
---	noChangeover		[0] NULL,
---	tsChangeover		[1] TSChangeover
---}
-
---TypeOfSubscribers		::= ENUMERATED
---{
---	home				(0),	
--- HPLMN subscribers
---	visiting			(1),	
--- roaming subscribers
---	all	(2)
---}
-
---TypeOfTransaction		::=	ENUMERATED
---{
---	successful		(0),
---	unsuccessful		(1),
---	all			(2)
---}
 
 -- From 29.002
 --
@@ -965,23 +855,6 @@ ManagementExtension::= SEQUENCE {
 	-- b)	The following octets representing digits of an address
 	--		encoded as a TBCD-STRING.
 	
---maxAddressLength  INTEGER ::= 20	
-	
---ISDN-AddressString::= AddressString (SIZE (1..maxISDN-AddressLength))
-	-- This type is used to represent ISDN numbers.
-
---maxISDN-AddressLength  INTEGER ::= 9	
-
---IMSI::= TBCD-STRING (SIZE (3..8))
-	-- digits of MCC, MNC, MSIN are concatenated in this order.
-	
---IMEI::= TBCD-STRING (SIZE (8))
-	--	Refers to International Mobile Station Equipment Identity
-	--	and Software Version Number (SVN) defined in TS GSM 03.03.
-	--	If the SVN is not present the last octet shall contain the
-	--	digit 0 and a filler.
-	--	If present the SVN shall be included in the last octet.
-	
 DefaultGPRS-Handling::= ENUMERATED {
 	continueTransaction (0) ,
 	releaseTransaction (1) ,
@@ -989,60 +862,6 @@ DefaultGPRS-Handling::= ENUMERATED {
         -- exception handling:
         -- reception of values in range 2-31 shall be treated as "continueTransaction"
         -- reception of values greater than 31 shall be treated as "releaseTransaction"
-
--- ServiceKey          ::= INTEGER (0..2147483647)	
-
--- TBCD-STRING         ::= OCTET STRING
-	-- This type (Telephony Binary Coded Decimal String) is used to
-	-- represent several digits from 0 through 9, *, #, a, b, c, two
-	-- digits per octet, each digit encoded 0000 to 1001 (0 to 9),
-	-- 1010 (*), 1011 (#), 1100 (a), 1101 (b) or 1110 (c); 1111 used
-	-- as filler when there is an odd number of digits.
-
-	-- bits 8765 of octet n encoding digit 2n
-	-- bits 4321 of octet n encoding digit 2(n-1) +1
-
-------------------------------------------------------------------------------
-------------------------------------------------------------------------------
---
---   the followings is added by todd,UTStarcom,defined in the modules 
---       of Attribute-ASN1Module
---
-
--- ManagementExtension     ::= SEQUENCE {
---				identifier	OBJECT IDENTIFIER,
---				significance	[1] BOOLEAN DEFAULT FALSE,
---				information	[2] ANY DEFINED BY identifier }
-------------------------------------------------------------------------------
-------------------------------------------------------------------------------
-
---CallEventRecordType::= INTEGER 
---{ 
---	moCallRecord			(0),
---	mtCallRecord			(1),
---	roamingRecord			(2),
---	incGatewayRecord		(3),
---	outGatewayRecord		(4),
---	transitCallRecord		(5),
---	moSMSRecord				(6),
---	mtSMSRecord				(7),
---	moSMSIWRecord			(8),
---	mtSMSGWRecord			(9),
---	ssActionRecord			(10),
---	hlrIntRecord			(11),
---	locUpdateHLRRecord		(12),
---	locUpdateVLRRecord		(13),
---	commonEquipRecord		(14),
---	moTraceRecord			(15),
---	mtTraceRecord			(16),
---	termCAMELRecord		(17),
---	sgsnPDPRecord			(18),
---	ggsnPDPRecord			(19),
---	sgsnMMRecord			(20),
---	sgsnSMORecord			(21),
---	sgsnSMTRecord			(22)
---
---}
 
 AccessPointNameNI	::= IA5String (SIZE(1..63))
 	--
