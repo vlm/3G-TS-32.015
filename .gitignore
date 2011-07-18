@@ -1,3 +1,4 @@
 src/*.o
 src/convert
 src/Makefile.am.sample
+*.tgz
