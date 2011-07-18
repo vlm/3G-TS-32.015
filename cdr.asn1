@@ -1268,7 +1268,8 @@ QoSDelay		::= ENUMERATED
 QoSInformation	::= CHOICE
 {
 	gsmQosInformation		[0] GSMQoSInformation,
-	umtsQosInformation		[1] OCTET STRING (SIZE (4..12))
+	-- umtsQosInformation		[1] OCTET STRING (SIZE (4..12))
+	umtsQosInformation		[1] ANY
 }
 -- When dealing with a pre R99 QoS profile the GSN may either choose the "GSMQoSInformation" or the
 -- "umtsQoSInformation" encoding. Dealing with R99 QoS profiles the GSN shall apply the
