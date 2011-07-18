@@ -55,11 +55,11 @@ static asn_TYPE_member_t asn_MBR_Diagnostics_1[] = {
 		},
 };
 static asn_TYPE_tag2member_t asn_MAP_Diagnostics_tag2el_1[] = {
-    { (ASN_TAG_CLASS_CONTEXT | (0 << 2)), 0, 0, 0 }, /* gsm0408Cause at 380 */
-    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 1, 0, 0 }, /* gsm0902MapErrorValue at 382 */
-    { (ASN_TAG_CLASS_CONTEXT | (2 << 2)), 2, 0, 0 }, /* ccittQ767Cause at 387 */
-    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 3, 0, 0 }, /* networkSpecificCause at 389 */
-    { (ASN_TAG_CLASS_CONTEXT | (4 << 2)), 4, 0, 0 } /* manufacturerSpecificCause at 393 */
+    { (ASN_TAG_CLASS_CONTEXT | (0 << 2)), 0, 0, 0 }, /* gsm0408Cause at 237 */
+    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 1, 0, 0 }, /* gsm0902MapErrorValue at 239 */
+    { (ASN_TAG_CLASS_CONTEXT | (2 << 2)), 2, 0, 0 }, /* ccittQ767Cause at 244 */
+    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 3, 0, 0 }, /* networkSpecificCause at 246 */
+    { (ASN_TAG_CLASS_CONTEXT | (4 << 2)), 4, 0, 0 } /* manufacturerSpecificCause at 250 */
 };
 static asn_CHOICE_specifics_t asn_SPC_Diagnostics_specs_1 = {
 	sizeof(struct Diagnostics),

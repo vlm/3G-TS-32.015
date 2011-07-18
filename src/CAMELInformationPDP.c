@@ -94,15 +94,15 @@ static ber_tlv_tag_t asn_DEF_CAMELInformationPDP_tags_1[] = {
 	(ASN_TAG_CLASS_UNIVERSAL | (17 << 2))
 };
 static asn_TYPE_tag2member_t asn_MAP_CAMELInformationPDP_tag2el_1[] = {
-    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 0, 0, 0 }, /* sCFAddress at 1086 */
-    { (ASN_TAG_CLASS_CONTEXT | (2 << 2)), 1, 0, 0 }, /* serviceKey at 1087 */
-    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 2, 0, 0 }, /* defaultTransactionHandling at 1088 */
-    { (ASN_TAG_CLASS_CONTEXT | (4 << 2)), 3, 0, 0 }, /* cAMELAccessPointNameNI at 1089 */
-    { (ASN_TAG_CLASS_CONTEXT | (5 << 2)), 4, 0, 0 }, /* cAMELAccessPointNameOI at 1090 */
-    { (ASN_TAG_CLASS_CONTEXT | (6 << 2)), 5, 0, 0 }, /* numberOfDPEncountered at 1091 */
-    { (ASN_TAG_CLASS_CONTEXT | (7 << 2)), 6, 0, 0 }, /* levelOfCAMELService at 1092 */
-    { (ASN_TAG_CLASS_CONTEXT | (8 << 2)), 7, 0, 0 }, /* freeFormatData at 1093 */
-    { (ASN_TAG_CLASS_CONTEXT | (9 << 2)), 8, 0, 0 } /* fFDAppendIndicator at 1094 */
+    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 0, 0, 0 }, /* sCFAddress at 486 */
+    { (ASN_TAG_CLASS_CONTEXT | (2 << 2)), 1, 0, 0 }, /* serviceKey at 487 */
+    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 2, 0, 0 }, /* defaultTransactionHandling at 488 */
+    { (ASN_TAG_CLASS_CONTEXT | (4 << 2)), 3, 0, 0 }, /* cAMELAccessPointNameNI at 489 */
+    { (ASN_TAG_CLASS_CONTEXT | (5 << 2)), 4, 0, 0 }, /* cAMELAccessPointNameOI at 490 */
+    { (ASN_TAG_CLASS_CONTEXT | (6 << 2)), 5, 0, 0 }, /* numberOfDPEncountered at 491 */
+    { (ASN_TAG_CLASS_CONTEXT | (7 << 2)), 6, 0, 0 }, /* levelOfCAMELService at 492 */
+    { (ASN_TAG_CLASS_CONTEXT | (8 << 2)), 7, 0, 0 }, /* freeFormatData at 493 */
+    { (ASN_TAG_CLASS_CONTEXT | (9 << 2)), 8, 0, 0 } /* fFDAppendIndicator at 494 */
 };
 static uint8_t asn_MAP_CAMELInformationPDP_mmap_1[(9 + (8 * sizeof(unsigned int)) - 1) / 8] = {
 	(0 << 7) | (0 << 6) | (0 << 5) | (0 << 4) | (0 << 3) | (0 << 2) | (0 << 1) | (0 << 0),

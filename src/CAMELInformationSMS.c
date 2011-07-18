@@ -85,14 +85,14 @@ static ber_tlv_tag_t asn_DEF_CAMELInformationSMS_tags_1[] = {
 	(ASN_TAG_CLASS_UNIVERSAL | (17 << 2))
 };
 static asn_TYPE_tag2member_t asn_MAP_CAMELInformationSMS_tag2el_1[] = {
-    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 0, 0, 0 }, /* sCFAddress at 1099 */
-    { (ASN_TAG_CLASS_CONTEXT | (2 << 2)), 1, 0, 0 }, /* serviceKey at 1100 */
-    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 2, 0, 0 }, /* defaultSMSHandling at 1101 */
-    { (ASN_TAG_CLASS_CONTEXT | (4 << 2)), 3, 0, 0 }, /* cAMELCallingPartyNumber at 1102 */
-    { (ASN_TAG_CLASS_CONTEXT | (5 << 2)), 4, 0, 0 }, /* cAMELDestinationSubscriberNumber at 1103 */
-    { (ASN_TAG_CLASS_CONTEXT | (6 << 2)), 5, 0, 0 }, /* cAMELSMSCAddress at 1104 */
-    { (ASN_TAG_CLASS_CONTEXT | (7 << 2)), 6, 0, 0 }, /* freeFormatData at 1105 */
-    { (ASN_TAG_CLASS_CONTEXT | (8 << 2)), 7, 0, 0 } /* sMSReferenceNumber at 1106 */
+    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 0, 0, 0 }, /* sCFAddress at 499 */
+    { (ASN_TAG_CLASS_CONTEXT | (2 << 2)), 1, 0, 0 }, /* serviceKey at 500 */
+    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 2, 0, 0 }, /* defaultSMSHandling at 501 */
+    { (ASN_TAG_CLASS_CONTEXT | (4 << 2)), 3, 0, 0 }, /* cAMELCallingPartyNumber at 502 */
+    { (ASN_TAG_CLASS_CONTEXT | (5 << 2)), 4, 0, 0 }, /* cAMELDestinationSubscriberNumber at 503 */
+    { (ASN_TAG_CLASS_CONTEXT | (6 << 2)), 5, 0, 0 }, /* cAMELSMSCAddress at 504 */
+    { (ASN_TAG_CLASS_CONTEXT | (7 << 2)), 6, 0, 0 }, /* freeFormatData at 505 */
+    { (ASN_TAG_CLASS_CONTEXT | (8 << 2)), 7, 0, 0 } /* sMSReferenceNumber at 506 */
 };
 static uint8_t asn_MAP_CAMELInformationSMS_mmap_1[(8 + (8 * sizeof(unsigned int)) - 1) / 8] = {
 	(0 << 7) | (0 << 6) | (0 << 5) | (0 << 4) | (0 << 3) | (0 << 2) | (0 << 1) | (0 << 0)

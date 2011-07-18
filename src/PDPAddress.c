@@ -28,8 +28,8 @@ static asn_TYPE_member_t asn_MBR_PDPAddress_1[] = {
 		},
 };
 static asn_TYPE_tag2member_t asn_MAP_PDPAddress_tag2el_1[] = {
-    { (ASN_TAG_CLASS_CONTEXT | (0 << 2)), 0, 0, 0 }, /* iPAddress at 1246 */
-    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 1, 0, 0 } /* eTSIAddress at 1248 */
+    { (ASN_TAG_CLASS_CONTEXT | (0 << 2)), 0, 0, 0 }, /* iPAddress at 646 */
+    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 1, 0, 0 } /* eTSIAddress at 648 */
 };
 static asn_CHOICE_specifics_t asn_SPC_PDPAddress_specs_1 = {
 	sizeof(struct PDPAddress),

@@ -28,10 +28,10 @@ static asn_TYPE_member_t asn_MBR_IPAddress_1[] = {
 		},
 };
 static asn_TYPE_tag2member_t asn_MAP_IPAddress_tag2el_1[] = {
-    { (ASN_TAG_CLASS_CONTEXT | (0 << 2)), 0, 0, 0 }, /* iPBinV4Address at 1218 */
-    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 0, 0, 0 }, /* iPBinV6Address at 1219 */
-    { (ASN_TAG_CLASS_CONTEXT | (2 << 2)), 1, 0, 0 }, /* iPTextV4Address at 1226 */
-    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 1, 0, 0 } /* iPTextV6Address at 1227 */
+    { (ASN_TAG_CLASS_CONTEXT | (0 << 2)), 0, 0, 0 }, /* iPBinV4Address at 618 */
+    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 0, 0, 0 }, /* iPBinV6Address at 619 */
+    { (ASN_TAG_CLASS_CONTEXT | (2 << 2)), 1, 0, 0 }, /* iPTextV4Address at 626 */
+    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 1, 0, 0 } /* iPTextV6Address at 627 */
 };
 static asn_CHOICE_specifics_t asn_SPC_IPAddress_specs_1 = {
 	sizeof(struct IPAddress),

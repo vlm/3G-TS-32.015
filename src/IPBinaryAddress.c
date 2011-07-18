@@ -80,8 +80,8 @@ static asn_TYPE_member_t asn_MBR_IPBinaryAddress_1[] = {
 		},
 };
 static asn_TYPE_tag2member_t asn_MAP_IPBinaryAddress_tag2el_1[] = {
-    { (ASN_TAG_CLASS_CONTEXT | (0 << 2)), 0, 0, 0 }, /* iPBinV4Address at 1218 */
-    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 1, 0, 0 } /* iPBinV6Address at 1219 */
+    { (ASN_TAG_CLASS_CONTEXT | (0 << 2)), 0, 0, 0 }, /* iPBinV4Address at 618 */
+    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 1, 0, 0 } /* iPBinV6Address at 619 */
 };
 static asn_CHOICE_specifics_t asn_SPC_IPBinaryAddress_specs_1 = {
 	sizeof(struct IPBinaryAddress),

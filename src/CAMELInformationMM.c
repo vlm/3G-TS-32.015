@@ -76,13 +76,13 @@ static ber_tlv_tag_t asn_DEF_CAMELInformationMM_tags_1[] = {
 	(ASN_TAG_CLASS_UNIVERSAL | (17 << 2))
 };
 static asn_TYPE_tag2member_t asn_MAP_CAMELInformationMM_tag2el_1[] = {
-    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 0, 0, 0 }, /* sCFAddress at 1075 */
-    { (ASN_TAG_CLASS_CONTEXT | (2 << 2)), 1, 0, 0 }, /* serviceKey at 1076 */
-    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 2, 0, 0 }, /* defaultTransactionHandling at 1077 */
-    { (ASN_TAG_CLASS_CONTEXT | (4 << 2)), 3, 0, 0 }, /* numberOfDPEncountered at 1078 */
-    { (ASN_TAG_CLASS_CONTEXT | (5 << 2)), 4, 0, 0 }, /* levelOfCAMELService at 1079 */
-    { (ASN_TAG_CLASS_CONTEXT | (6 << 2)), 5, 0, 0 }, /* freeFormatData at 1080 */
-    { (ASN_TAG_CLASS_CONTEXT | (7 << 2)), 6, 0, 0 } /* fFDAppendIndicator at 1081 */
+    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 0, 0, 0 }, /* sCFAddress at 475 */
+    { (ASN_TAG_CLASS_CONTEXT | (2 << 2)), 1, 0, 0 }, /* serviceKey at 476 */
+    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 2, 0, 0 }, /* defaultTransactionHandling at 477 */
+    { (ASN_TAG_CLASS_CONTEXT | (4 << 2)), 3, 0, 0 }, /* numberOfDPEncountered at 478 */
+    { (ASN_TAG_CLASS_CONTEXT | (5 << 2)), 4, 0, 0 }, /* levelOfCAMELService at 479 */
+    { (ASN_TAG_CLASS_CONTEXT | (6 << 2)), 5, 0, 0 }, /* freeFormatData at 480 */
+    { (ASN_TAG_CLASS_CONTEXT | (7 << 2)), 6, 0, 0 } /* fFDAppendIndicator at 481 */
 };
 static uint8_t asn_MAP_CAMELInformationMM_mmap_1[(7 + (8 * sizeof(unsigned int)) - 1) / 8] = {
 	(0 << 7) | (0 << 6) | (0 << 5) | (0 << 4) | (0 << 3) | (0 << 2) | (0 << 1)
