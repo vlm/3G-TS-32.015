@@ -67,12 +67,12 @@ static ber_tlv_tag_t asn_DEF_ChangeOfCharCondition_tags_1[] = {
 	(ASN_TAG_CLASS_UNIVERSAL | (16 << 2))
 };
 static asn_TYPE_tag2member_t asn_MAP_ChangeOfCharCondition_tag2el_1[] = {
-    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 0, 0, 0 }, /* qosRequested at 539 */
-    { (ASN_TAG_CLASS_CONTEXT | (2 << 2)), 1, 0, 0 }, /* qosNegotiated at 540 */
-    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 2, 0, 0 }, /* dataVolumeGPRSUplink at 541 */
-    { (ASN_TAG_CLASS_CONTEXT | (4 << 2)), 3, 0, 0 }, /* dataVolumeGPRSDownlink at 542 */
-    { (ASN_TAG_CLASS_CONTEXT | (5 << 2)), 4, 0, 0 }, /* changeCondition at 543 */
-    { (ASN_TAG_CLASS_CONTEXT | (6 << 2)), 5, 0, 0 } /* changeTime at 545 */
+    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 0, 0, 0 }, /* qosRequested at 489 */
+    { (ASN_TAG_CLASS_CONTEXT | (2 << 2)), 1, 0, 0 }, /* qosNegotiated at 490 */
+    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 2, 0, 0 }, /* dataVolumeGPRSUplink at 491 */
+    { (ASN_TAG_CLASS_CONTEXT | (4 << 2)), 3, 0, 0 }, /* dataVolumeGPRSDownlink at 492 */
+    { (ASN_TAG_CLASS_CONTEXT | (5 << 2)), 4, 0, 0 }, /* changeCondition at 493 */
+    { (ASN_TAG_CLASS_CONTEXT | (6 << 2)), 5, 0, 0 } /* changeTime at 495 */
 };
 static asn_SEQUENCE_specifics_t asn_SPC_ChangeOfCharCondition_specs_1 = {
 	sizeof(struct ChangeOfCharCondition),

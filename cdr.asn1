@@ -191,7 +191,7 @@ CallDuration::= INTEGER
 	-- For call attempts this is the call holding time.
 	-- 
 
-CallEventRecordType::= INTEGER 
+CallEventRecordType::= ENUMERATED
 { 
 	moCallRecord		(0),
 	mtCallRecord		(1),
@@ -227,152 +227,9 @@ CalledNumber			::= BCDDirectoryNumber
 
 CallingNumber			::= BCDDirectoryNumber
 
-CallingPartyCategory	::= Category
-
-CallReference			::= INTEGER
-
-CallType				::= INTEGER
-{
-	mobileOriginated	(0),
-	mobileTerminated	(1)
-}
-
-CallTypes::= SET OF CallType
-
-CAMELDestinationNumber	::= DestinationRoutingAddress
-
-CAMELInformation		::= SET
-{
-	cAMELDestinationNumber	[1] CAMELDestinationNumber OPTIONAL,
-	connectedNumber			[2] ConnectedNumber OPTIONAL,
-	roamingNumber			[3] RoamingNumber OPTIONAL,
-	mscOutgoingTKGP			[4] TrunkGroup OPTIONAL,
-	seizureTime				[5] TimeStamp OPTIONAL,
-	answerTime				[6] TimeStamp OPTIONAL,
-	releaseTime				[7] TimeStamp OPTIONAL,
-	callDuration			[8] CallDuration OPTIONAL,
-	dataVolume				[9] DataVolume OPTIONAL,
-	cAMELInitCFIndicator	[10] CAMELInitCFIndicator OPTIONAL,
-	causeForTerm			[11] CauseForTerm OPTIONAL,
-	cAMELModification		[12] ChangedParameters OPTIONAL,
-	freeFormatData			[13] FreeFormatData OPTIONAL,
-	diagnostics				[14] Diagnostics OPTIONAL,
-	freeFormatDataAppend	[15] BOOLEAN OPTIONAL,
-	freeFormatData-2		[16] FreeFormatData OPTIONAL,
-	freeFormatDataAppend-2	[17] BOOLEAN OPTIONAL
-}
-
-CAMELSMSInformation		::= SET
-{
-	gsm-SCFAddress					[1] Gsm-SCFAddress OPTIONAL,
-	serviceKey					[2] ServiceKey OPTIONAL,
-	defaultSMSHandling		 		[3] DefaultSMS-Handling OPTIONAL, 
-	freeFormatData       				[4] FreeFormatData OPTIONAL,
-	callingPartyNumber				[5] CallingNumber OPTIONAL,
-	destinationSubscriberNumber			[6] CalledNumber OPTIONAL,
-	cAMELSMSCAddress				[7] AddressString OPTIONAL
-}
-
-CAMELInitCFIndicator	::= ENUMERATED
-{
-	noCAMELCallForwarding	(0),
-	cAMELCallForwarding		(1)
-}
-
-CAMELModificationParameters	::= SET
-	--
-	-- The list contains only parameters changed due to CAMEL call
-	-- handling.
-	--
-{
-	callingPartyNumber		[0] CallingNumber OPTIONAL,
-	callingPartyCategory		[1] CallingPartyCategory OPTIONAL,
-	originalCalledPartyNumber	[2] OriginalCalledNumber OPTIONAL,
-	genericNumbers			[3] GenericNumbers OPTIONAL,
-	redirectingPartyNumber		[4] RedirectingNumber OPTIONAL,
-	redirectionCounter		[5] NumberOfForwarding OPTIONAL
-}
-
-
-Category		::= OCTET STRING (SIZE(1))
-	--
-	-- The internal structure is defined in ITU-T Rec Q.763.
-	--
-
-CauseForTerm			::= INTEGER
-	--
-	-- Cause codes from 16 up to 31 are defined in TS 32.015 as 'CauseForRecClosing'
-	-- (cause for record closing).
-	-- There is no direct correlation between these two types.
-	--
-{
-
-	normalRelease			(0),
-	partialRecord						(1),
-	partialRecordCallReestablishment	(2),
-	unsuccessfulCallAttempt				(3),
-	stableCallAbnormalTermination		(4),
-	cAMELInitCallRelease	(5)
-}
-
 CellId	::= OCTET STRING (SIZE(2))
 	--
 	-- Coded according to TS 24.008	
-	--
-
-ChangedParameters		::= SET
-{
-	changeFlags		[0] ChangeFlags,
-	changeList		[1] CAMELModificationParameters OPTIONAL
-}
-
-ChangeFlags				::= BIT STRING
-{
-callingPartyNumberModified			(0),
-callingPartyCategoryModified		(1),
-originalCalledPartyNumberModified	(2),
-genericNumbersModified				(3),
-redirectingPartyNumberModified		(4),
-redirectionCounterModified			(5)
-}
-
-ChangeOfClassmark::= SEQUENCE
-{
-	classmark			[0] Classmark,
-	changeTime			[1] TimeStamp
-}
-
-ChangeOfRadioChannel::= SEQUENCE
-{
-	radioChannel		[0] TrafficChannel,
-	changeTime			[1] TimeStamp,
-	speechVersionUsed	[2] SpeechVersionIdentifier OPTIONAL
-}
-
-
-ChannelCoding			::= ENUMERATED
-{
-	tchF4800		(1),
-	tchF9600		(2),
-	tchF14400		(3)
-}
-
-ChargeIndicator			::= INTEGER
-{
-	noCharge		(0),
-	charge			(1)
-}
-
-Classmark			::= OCTET STRING
-	--
-	-- See Mobile station classmark  2,  TS 24.008	
-	--
-
-ConnectedNumber			::= BCDDirectoryNumber
-
-DataVolume			::= INTEGER
-	--
-	-- The volume of data transferred in segments of 64 octets.
 	--
 
 Diagnostics						::= CHOICE
@@ -392,29 +249,11 @@ Diagnostics						::= CHOICE
 	-- To be defined by manufacturer	
 }
 
-EParameter	::= INTEGER (0..1023)
-	-- 
-	-- Coded according to  TS 22.024  and TS 24.080
-	--
-
-EquipmentId				::= INTEGER
-
 FreeFormatData			::= OCTET STRING (SIZE(1..160))
 	--
 	-- Free formated data as sent in the FCI message
 	-- See TS 29.078 
 	--
-
-GenericNumber			::= BCDDirectoryNumber
-
-GenericNumbers			::= SET OF GenericNumber
-
-Gsm-SCFAddress			::= ISDN-AddressString
-	--
-	-- See TS 29.002
-	--
-
-HLRIntResult			::= Diagnostics
 
 LevelOfCAMELService		::= BIT STRING
 {
@@ -423,207 +262,23 @@ LevelOfCAMELService		::= BIT STRING
 	onlineCharging			(2)
 }
 
-LocationAreaAndCell		::= SEQUENCE
-{
-	locationAreaCode	[0] LocationAreaCode,
-	cellIdentifier		[1] CellId	
---
--- For 2G the content of the Cell Identifier is defined by the Cell Id 
--- refer TS 24.008 and for 3G by the Service Area Code refer TS 25.413. 
---
-
-}
-
 LocationAreaCode		::= OCTET STRING (SIZE(2))
 	--
 	-- See TS 24.008
 	--
 
-LocationChange			::= SEQUENCE
-{
-	location			[0] LocationAreaAndCell,
-	changeTime			[1] TimeStamp
-}
-
-Location-info			::= SEQUENCE
-{
-	mscNumber			[1] MscNo OPTIONAL,
-	location-area		[2] LocationAreaCode,
-	cell-identification	[3] CellId OPTIONAL
-}
-
-LocUpdResult			::= Diagnostics
-
 ManagementExtensions	::= SET OF ManagementExtension
 
-MCCMNC	::= GraphicString (SIZE(5))
-	--
-	-- This type contains the mobile country code (MCC) and the mobile
-	-- network code (MNC) of a PLMN.
-	--
-	
-RateIndication 			::= OCTET STRING(SIZE(1))	
-
 MessageReference		::= OCTET STRING
-
---Month					::= INTEGER (1..12)
-
-MSCAddress				::= AddressString
-
-MscNo					::= ISDN-AddressString
-	--
-	-- See TS 23.003
-	--
 
 MSISDN	::= ISDN-AddressString 
 	-- 
 	-- See TS 23.003
 	--
 
---MSPowerClasses			::= SET OF RFPowerCapability
-
-NetworkCallReference	::= CallReferenceNumber	--
-	-- See TS 29.002
-	--
-
-NetworkSpecificCode		::= INTEGER
-	-- 
-	-- To be defined by network operator
-	--
-
-NetworkSpecificServices	::= SET OF NetworkSpecificCode
-
-NumOfHSCSDChanRequested		::= INTEGER
-
-NumOfHSCSDChanAllocated		::= INTEGER
-
--- ObservedIMEITicketEnable	::= BOOLEAN
-
-OriginalCalledNumber		::= BCDDirectoryNumber
-
-RadioChannelsRequested	::= SET OF RadioChanRequested
-
-RadioChanRequested		::= ENUMERATED
-{
-	--
-	-- See Bearer Capability TS 24.008
-	--
-	halfRateChannel			(0),
-	fullRateChannel			(1),
-	dualHalfRatePreferred	(2),
-	dualFullRatePreferred	(3)
-}
-
--- RecordClassDestination	::= CHOICE
--- {
---	osApplication		[0] AE-title,
---	fileType		[1] FileType
--- }
-
--- RecordClassDestinations	::= SET OF RecordClassDestination
-
 RecordingEntity::= AddressString 
 
---RecordingMethod			::= ENUMERATED
---{
---	inCallRecord		(0),
---	inSSRecord			(1)
---}
-
-RedirectingNumber		::= BCDDirectoryNumber
-
---RFPowerCapability		::= INTEGER
-	--
-	-- This field contains the RF power capability of the Mobile station
-	-- classmark 1 and 2 of TS 24.008 expressed as an integer.
-	-- 
-
-RoamingNumber			::= ISDN-AddressString
-	-- 
-	-- See TS 23.003
-	--
-
-ServiceDistanceDependencies	::= SET OF ServiceDistanceDependency
-
-ServiceDistanceDependency	::= SEQUENCE
-{
-	aocService				[0] INTEGER,
-	chargingZone			[1] INTEGER OPTIONAL
-	--
-	-- Note that these values correspond to the contents
-	-- of the attributes aocServiceId and zoneId
-	-- respectively.
-	--
-}
-
-SimpleIntegerName			::= INTEGER
-
-SimpleStringName			::= GraphicString
-
 SMSResult					::= Diagnostics
-
-SpeechVersionIdentifier	::= OCTET STRING (SIZE(1))
-
---	see GSM 08.08
-
---	000 0001	GSM speech full rate version 1
---	001 0001	GSM speech full rate version 2 	 used for enhanced full rate
---	010 0001	GSM speech full rate version 3	 for future use
---	000 0101	GSM speech half rate version 1
---	001 0101	GSM speech half rate version 2 	for future use
---	010 0101	GSM speech half rate version 3	for future use
-
-SSActionResult				::= Diagnostics
-
-SSActionType				::= ENUMERATED
-{
-	registration			(0),
-	erasure					(1),
-	activation				(2),
-	deactivation			(3),
-	interrogation			(4),
-	invocation				(5),
-	passwordRegistration	(6)
-}
-
-SupplServices				::= SET OF SS-Code
-
-SuppServiceUsed				::= SEQUENCE
-{
-	ssCode					[0] SS-Code,
-	ssTime					[1] TimeStamp OPTIONAL
-}
-
---SwitchoverTime				::= SEQUENCE 
---{
---	hour					INTEGER (0..23),
---	minute					INTEGER (0..59),
---	second					INTEGER (0..59)
---}
-
-TariffId					::= INTEGER
-
---TariffPeriod				::= SEQUENCE
---{
---	switchoverTime			[0] SwitchoverTime,
---	tariffId				[1] INTEGER
---	Note that the value of tariffId corresponds 
---	to the attribute tariffId.
---}
-
---TariffPeriods				::= SET OF TariffPeriod
-
---TariffSystemStatus			::= ENUMERATED
---{
---	available				(0),	
--- available for modification
---	checked					(1),	
--- "frozen" and checked
---	standby					(2),	
--- "frozen" awaiting activation
---	active					(3)	
--- "frozen" and active
---}
 
 TimeStamp					::= OCTET STRING (SIZE(9))
 	--
@@ -644,35 +299,7 @@ TimeStamp					::= OCTET STRING (SIZE(9))
 	-- mm	=	minute 00 to 59		BCD encoded
 	--
 
-TrafficChannel			::=	ENUMERATED
-{
-	fullRate			(0),
-	halfRate			(1)
-}
-
-TranslatedNumber		::= 	BCDDirectoryNumber
-
-TransparencyInd			::=	ENUMERATED
-{
-	transparent			(0),
-	nonTransparent		(1)
-}
-
-TrunkGroup				::=	 CHOICE
-{
-	tkgpNumber			[0] INTEGER,
-	tkgpName			[1] GraphicString
-}
-
--- From 29.002
---
-NumberOfForwarding::= INTEGER (1..5)
-
 CallReferenceNumber::= OCTET STRING (SIZE (1..8))
-
-BasicServiceCode::= CHOICE {
-	bearerService	[2] BearerServiceCode,
-	teleservice	[3] TeleserviceCode}
 
 AddressString::= OCTET STRING (SIZE (1..maxAddressLength))
 	-- This type is used to represent a number for addressing
@@ -744,14 +371,6 @@ TBCD-STRING::= OCTET STRING
 
 ServiceKey::= INTEGER (0..2147483647)
 
-DefaultCallHandling::= ENUMERATED {
-	continueCall (0) ,
-	releaseCall (1) ,
-	...}
-	-- exception handling:
-	-- reception of values in range 2-31 shall be treated as "continueCall"
-	-- reception of values greater than 31 shall be treated as "releaseCall"
-
 DefaultSMS-Handling::= ENUMERATED {
 	continueTransaction (0) ,
 	releaseTransaction (1) ,
@@ -760,46 +379,6 @@ DefaultSMS-Handling::= ENUMERATED {
 --	reception of values in range 2-31 shall be treated as "continueTransaction"
 --	reception of values greater than 31 shall be treated as "releaseTransaction"
 
-BearerServiceCode::= OCTET STRING (SIZE (1))
-	-- This type is used to represent the code identifying a single
-	-- bearer service, a group of bearer services, or all bearer
-	-- services. The services are defined in TS GSM 02.02.
-	-- The internal structure is defined as follows:
-	--
-	-- plmn-specific bearer services:
-	-- bits 87654321: defined by the HPLMN operator
-
-	-- rest of bearer services:
-	-- bit 8: 0 (unused)
-	-- bits 7654321: group (bits 7654), and rate, if applicable
-	-- (bits 321)
-
-TeleserviceCode::= OCTET STRING (SIZE (1))
-	-- This type is used to represent the code identifying a single
-	-- teleservice, a group of teleservices, or all teleservices. The
-	-- services are defined in TS GSM 02.03.
-	-- The internal structure is defined as follows:
-
-	-- bits 87654321: group (bits 8765) and specific service
-	-- (bits 4321)
-
-SS-Code::= OCTET STRING (SIZE (1))
-	-- This type is used to represent the code identifying a single
-	-- supplementary service, a group of supplementary services, or
-	-- all supplementary services. The services and abbreviations
-	-- used are defined in TS GSM 02.04. The internal structure is
-	-- defined as follows:
-	--
-	-- bits 87654321: group (bits 8765), and specific service
-	-- (bits 4321)
-
--- From 29.078
-DestinationRoutingAddress::= SEQUENCE SIZE(1) OF CalledPartyNumber 
--- Indicates the Called Party Number. Refer to ITU-T Q.763 [20] for encoding.
-
-CalledPartyNumber::= OCTET STRING (SIZE(1 .. 20))
--- Indicates the Called Party Number.
-
 -- From X.721
 	
 ManagementExtension::= SEQUENCE {
@@ -807,54 +386,6 @@ ManagementExtension::= SEQUENCE {
 	significance [1] BOOLEAN DEFAULT FALSE,
 	information [2] ANY DEFINED BY identifier }
 
-------------------------------------------------------------------------------
-------------------------------------------------------------------------------
-
---
---   the followings is added by todd,UTStarcom,defined in the modules of MAP-COMMONTYPES
---
-
---AddressString::= OCTET STRING (SIZE (1..maxAddressLength))
-	-- This type is used to represent a number for addressing
-	-- purposes. It is composed of
-	--	a)	one octet for nature of address, and numbering plan
-	--		indicator.
-	--	b)	digits of an address encoded as TBCD-String.
-
-	-- a)	The first octet includes a one bit extension indicator, a
-	--		3 bits nature of address indicator and a 4 bits numbering
-	--		plan indicator, encoded as follows:
-
-	-- bit 8: 1  (no extension)
-
-	-- bits 765: nature of address indicator
-	--	000  unknown
-	--	001  international number
-	--	010  national significant number
-	--	011  network specific number
-	--	100  subscriber number
-	--	101  reserved
-	--	110  abbreviated number
-	--	111  reserved for extension
-
-	-- bits 4321: numbering plan indicator
-	--	0000  unknown
-	--	0001  ISDN/Telephony Numbering Plan (Rec CCITT E.164)
-	--	0010  spare
-	--	0011  data numbering plan (CCITT Rec X.121)
-	--	0100  telex numbering plan (CCITT Rec F.69)
-	--	0101  spare
-	--	0110  land mobile numbering plan (CCITT Rec E.212)
-	--	0111  spare
-	--	1000  national numbering plan
-	--	1001  private numbering plan
-	--	1111  reserved for extension
-
-	--	all other values are reserved.
-
-	-- b)	The following octets representing digits of an address
-	--		encoded as a TBCD-STRING.
-	
 DefaultGPRS-Handling::= ENUMERATED {
 	continueTransaction (0) ,
 	releaseTransaction (1) ,
@@ -1186,23 +717,6 @@ SGSNChange	::= BOOLEAN
 	--
 
 SystemType  ::= ENUMERATED
-{
-	unknown				(0),
-	iuUTRAN				(1),
-	gERAN				(2)
-}
-
-
-SCAddressString ::= OCTET STRING (SIZE (1..maxSCAddressLength))
-maxSCAddressLength  INTEGER ::= 21
-
-ISDNAddressString ::= SCAddressString (SIZE (1..maxSCAddressLength))
-
-SvcTypeString ::= SCAddressString (SIZE (1..maxSvcTypeLength))
-
-maxSvcTypeLength INTEGER ::= 6
-
-SystemType1  ::= ENUMERATED
 {
 	unknown				(0),
 	iuUTRAN				(1),

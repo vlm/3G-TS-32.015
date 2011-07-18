@@ -11,29 +11,29 @@ int
 CallEventRecordType_constraint(asn_TYPE_descriptor_t *td, const void *sptr,
 			asn_app_constraint_failed_f *ctfailcb, void *app_key) {
 	/* Replace with underlying type checker */
-	td->check_constraints = asn_DEF_NativeInteger.check_constraints;
+	td->check_constraints = asn_DEF_NativeEnumerated.check_constraints;
 	return td->check_constraints(td, sptr, ctfailcb, app_key);
 }
 
 /*
- * This type is implemented using NativeInteger,
+ * This type is implemented using NativeEnumerated,
  * so here we adjust the DEF accordingly.
  */
 static void
 CallEventRecordType_1_inherit_TYPE_descriptor(asn_TYPE_descriptor_t *td) {
-	td->free_struct    = asn_DEF_NativeInteger.free_struct;
-	td->print_struct   = asn_DEF_NativeInteger.print_struct;
-	td->ber_decoder    = asn_DEF_NativeInteger.ber_decoder;
-	td->der_encoder    = asn_DEF_NativeInteger.der_encoder;
-	td->xer_decoder    = asn_DEF_NativeInteger.xer_decoder;
-	td->xer_encoder    = asn_DEF_NativeInteger.xer_encoder;
-	td->uper_decoder   = asn_DEF_NativeInteger.uper_decoder;
-	td->uper_encoder   = asn_DEF_NativeInteger.uper_encoder;
+	td->free_struct    = asn_DEF_NativeEnumerated.free_struct;
+	td->print_struct   = asn_DEF_NativeEnumerated.print_struct;
+	td->ber_decoder    = asn_DEF_NativeEnumerated.ber_decoder;
+	td->der_encoder    = asn_DEF_NativeEnumerated.der_encoder;
+	td->xer_decoder    = asn_DEF_NativeEnumerated.xer_decoder;
+	td->xer_encoder    = asn_DEF_NativeEnumerated.xer_encoder;
+	td->uper_decoder   = asn_DEF_NativeEnumerated.uper_decoder;
+	td->uper_encoder   = asn_DEF_NativeEnumerated.uper_encoder;
 	if(!td->per_constraints)
-		td->per_constraints = asn_DEF_NativeInteger.per_constraints;
-	td->elements       = asn_DEF_NativeInteger.elements;
-	td->elements_count = asn_DEF_NativeInteger.elements_count;
-	td->specifics      = asn_DEF_NativeInteger.specifics;
+		td->per_constraints = asn_DEF_NativeEnumerated.per_constraints;
+	td->elements       = asn_DEF_NativeEnumerated.elements;
+	td->elements_count = asn_DEF_NativeEnumerated.elements_count;
+     /* td->specifics      = asn_DEF_NativeEnumerated.specifics;	// Defined explicitly */
 }
 
 void
@@ -80,8 +80,67 @@ CallEventRecordType_encode_xer(asn_TYPE_descriptor_t *td, void *structure,
 	return td->xer_encoder(td, structure, ilevel, flags, cb, app_key);
 }
 
+static asn_INTEGER_enum_map_t asn_MAP_CallEventRecordType_value2enum_1[] = {
+	{ 0,	12,	"moCallRecord" },
+	{ 1,	12,	"mtCallRecord" },
+	{ 2,	13,	"roamingRecord" },
+	{ 3,	16,	"incGatewayRecord" },
+	{ 4,	16,	"outGatewayRecord" },
+	{ 5,	17,	"transitCallRecord" },
+	{ 6,	11,	"moSMSRecord" },
+	{ 7,	11,	"mtSMSRecord" },
+	{ 8,	13,	"moSMSIWRecord" },
+	{ 9,	13,	"mtSMSGWRecord" },
+	{ 10,	14,	"ssActionRecord" },
+	{ 11,	12,	"hlrIntRecord" },
+	{ 12,	18,	"locUpdateHLRRecord" },
+	{ 13,	18,	"locUpdateVLRRecord" },
+	{ 14,	17,	"commonEquipRecord" },
+	{ 15,	13,	"moTraceRecord" },
+	{ 16,	13,	"mtTraceRecord" },
+	{ 17,	15,	"termCAMELRecord" },
+	{ 18,	13,	"sgsnPDPRecord" },
+	{ 19,	13,	"ggsnPDPRecord" },
+	{ 20,	12,	"sgsnMMRecord" },
+	{ 21,	13,	"sgsnSMORecord" },
+	{ 22,	13,	"sgsnSMTRecord" }
+};
+static unsigned int asn_MAP_CallEventRecordType_enum2value_1[] = {
+	14,	/* commonEquipRecord(14) */
+	19,	/* ggsnPDPRecord(19) */
+	11,	/* hlrIntRecord(11) */
+	3,	/* incGatewayRecord(3) */
+	12,	/* locUpdateHLRRecord(12) */
+	13,	/* locUpdateVLRRecord(13) */
+	0,	/* moCallRecord(0) */
+	8,	/* moSMSIWRecord(8) */
+	6,	/* moSMSRecord(6) */
+	15,	/* moTraceRecord(15) */
+	1,	/* mtCallRecord(1) */
+	9,	/* mtSMSGWRecord(9) */
+	7,	/* mtSMSRecord(7) */
+	16,	/* mtTraceRecord(16) */
+	4,	/* outGatewayRecord(4) */
+	2,	/* roamingRecord(2) */
+	20,	/* sgsnMMRecord(20) */
+	18,	/* sgsnPDPRecord(18) */
+	21,	/* sgsnSMORecord(21) */
+	22,	/* sgsnSMTRecord(22) */
+	10,	/* ssActionRecord(10) */
+	17,	/* termCAMELRecord(17) */
+	5	/* transitCallRecord(5) */
+};
+static asn_INTEGER_specifics_t asn_SPC_CallEventRecordType_specs_1 = {
+	asn_MAP_CallEventRecordType_value2enum_1,	/* "tag" => N; sorted by tag */
+	asn_MAP_CallEventRecordType_enum2value_1,	/* N => "tag"; sorted by N */
+	23,	/* Number of elements in the maps */
+	0,	/* Enumeration is not extensible */
+	1,	/* Strict enumeration */
+	0,	/* Native long size */
+	0
+};
 static ber_tlv_tag_t asn_DEF_CallEventRecordType_tags_1[] = {
-	(ASN_TAG_CLASS_UNIVERSAL | (2 << 2))
+	(ASN_TAG_CLASS_UNIVERSAL | (10 << 2))
 };
 asn_TYPE_descriptor_t asn_DEF_CallEventRecordType = {
 	"CallEventRecordType",
@@ -103,6 +162,6 @@ asn_TYPE_descriptor_t asn_DEF_CallEventRecordType = {
 		/sizeof(asn_DEF_CallEventRecordType_tags_1[0]), /* 1 */
 	0,	/* No PER visible constraints */
 	0, 0,	/* Defined elsewhere */
-	0	/* No specifics */
+	&asn_SPC_CallEventRecordType_specs_1	/* Additional specs */
 };
 

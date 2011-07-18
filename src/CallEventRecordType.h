@@ -12,7 +12,7 @@
 #include <asn_application.h>
 
 /* Including external dependencies */
-#include <NativeInteger.h>
+#include <NativeEnumerated.h>
 
 #ifdef __cplusplus
 extern "C" {

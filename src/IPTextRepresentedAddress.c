@@ -108,8 +108,8 @@ static asn_TYPE_member_t asn_MBR_IPTextRepresentedAddress_1[] = {
 		},
 };
 static asn_TYPE_tag2member_t asn_MAP_IPTextRepresentedAddress_tag2el_1[] = {
-    { (ASN_TAG_CLASS_CONTEXT | (2 << 2)), 0, 0, 0 }, /* iPTextV4Address at 626 */
-    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 1, 0, 0 } /* iPTextV6Address at 627 */
+    { (ASN_TAG_CLASS_CONTEXT | (2 << 2)), 0, 0, 0 }, /* iPTextV4Address at 576 */
+    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 1, 0, 0 } /* iPTextV6Address at 577 */
 };
 static asn_CHOICE_specifics_t asn_SPC_IPTextRepresentedAddress_specs_1 = {
 	sizeof(struct IPTextRepresentedAddress),
