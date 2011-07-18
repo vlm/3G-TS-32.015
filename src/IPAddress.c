@@ -7,6 +7,51 @@
 
 #include "IPAddress.h"
 
+static asn_enc_rval_t
+IPAddress_encode_xer(asn_TYPE_descriptor_t *td, void *sptr,
+                int ilevel, enum xer_encoder_flags_e flags,
+                asn_app_consume_bytes_f *cb, void *app_key) {
+    const IPAddress_t *st = (const IPAddress_t *)sptr;
+    asn_enc_rval_t er;
+    char buf[256];
+
+    if(st->present == IPAddress_PR_iPBinaryAddress
+        && st->choice.iPBinaryAddress.present == IPBinaryAddress_PR_iPBinV4Address
+        && st->choice.iPBinaryAddress.choice.iPBinV4Address.size == 4) {
+        const IA5String_t *ip = &st->choice.iPBinaryAddress.choice.iPBinV4Address;
+        er.encoded = snprintf(buf, sizeof(buf), "%d.%d.%d.%d",
+                ip->buf[0], ip->buf[1], ip->buf[2], ip->buf[3]);
+        if(cb(buf, er.encoded, app_key) < 0)
+            _ASN_ENCODE_FAILED;
+        _ASN_ENCODED_OK(er);
+    } else if(st->present == IPAddress_PR_iPBinaryAddress
+        && st->choice.iPBinaryAddress.present == IPBinaryAddress_PR_iPBinV6Address
+        && st->choice.iPBinaryAddress.choice.iPBinV6Address.size == 16) {
+        const IA5String_t *ip = &st->choice.iPBinaryAddress.choice.iPBinV6Address;
+        er.encoded = snprintf(buf, sizeof(buf),
+                "%02x%02x:%02x%02x:%02x%02x:%02x%02x"
+                "%02x%02x:%02x%02x:%02x%02x:%02x%02x",
+                ip->buf[0], ip->buf[1], ip->buf[2], ip->buf[3],
+                ip->buf[4], ip->buf[5], ip->buf[6], ip->buf[7],
+                ip->buf[8], ip->buf[9], ip->buf[10], ip->buf[11],
+                ip->buf[12], ip->buf[13], ip->buf[14], ip->buf[15]
+        );
+        if(cb(buf, er.encoded, app_key) < 0)
+            _ASN_ENCODE_FAILED;
+        _ASN_ENCODED_OK(er);
+    } else if(st->present == IPAddress_PR_iPTextRepresentedAddress
+        && (st->choice.iPTextRepresentedAddress.present == IPTextRepresentedAddress_PR_iPTextV4Address
+         || st->choice.iPTextRepresentedAddress.present == IPTextRepresentedAddress_PR_iPTextV6Address)) {
+        if(cb(st->choice.iPTextRepresentedAddress.choice.iPTextV4Address.buf,
+              st->choice.iPTextRepresentedAddress.choice.iPTextV4Address.size, app_key) < 0)
+            _ASN_ENCODE_FAILED;
+        er.encoded = st->choice.iPTextRepresentedAddress.choice.iPTextV4Address.size;
+        _ASN_ENCODED_OK(er);
+    } else {
+        return CHOICE_encode_xer(td, sptr, ilevel, flags, cb, app_key);
+    }
+}
+
 static asn_TYPE_member_t asn_MBR_IPAddress_1[] = {
 	{ ATF_NOFLAGS, 0, offsetof(struct IPAddress, choice.iPBinaryAddress),
 		-1 /* Ambiguous tag (CHOICE?) */,
@@ -52,7 +97,7 @@ asn_TYPE_descriptor_t asn_DEF_IPAddress = {
 	CHOICE_decode_ber,
 	CHOICE_encode_der,
 	CHOICE_decode_xer,
-	CHOICE_encode_xer,
+	IPAddress_encode_xer,
 	0, 0,	/* No PER support, use "-gen-PER" to enable */
 	CHOICE_outmost_tag,
 	0,	/* No effective tags (pointer) */
